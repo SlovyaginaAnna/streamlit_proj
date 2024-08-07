@@ -2,29 +2,6 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Заголовок страницы
-st.title("Загрузка собственного датасета")
-df = pd.read_csv('train.csv')
-# Компонент для загрузки файла
-uploaded_file = st.file_uploader("Выберите файл")
-
-if uploaded_file is not None:
-    try:
-        # Предположим, что это файл CSV
-        df = pd.read_csv(uploaded_file)
-
-        # Показать данные
-        st.write("Вот ваши данные:")
-        st.write(df)
-    except Exception as e:
-        st.error(f"Произошла ошибка при загрузке файла: {e}")
-
-else:
-    st.write("Пожалуйста, загрузите файл чтобы увидеть данные")
-
-if (st.button('Посмотреть готовые данные')):
-    st.write("Готовые данные:")
-    st.write(df)
 
 def sidebar_input_features():
     str_columns = df.select_dtypes(include=['object']).columns.tolist()
@@ -47,4 +24,29 @@ def sidebar_input_features():
         st.write("## Выбранная ячейка")
         st.write(df.loc[s, col])
 
-sidebar_input_features()
+
+if __name__ == "__main__":
+    # Заголовок страницы
+    st.title("Загрузка собственного датасета")
+    df = pd.read_csv('train.csv')
+    # Компонент для загрузки файла
+    uploaded_file = st.file_uploader("Выберите файл")
+
+    if uploaded_file is not None:
+        try:
+            # Предположим, что это файл CSV
+            df = pd.read_csv(uploaded_file)
+
+            # Показать данные
+            st.write("Вот ваши данные:")
+            st.write(df)
+        except Exception as e:
+            st.error(f"Произошла ошибка при загрузке файла: {e}")
+
+    else:
+        st.write("Пожалуйста, загрузите файл чтобы увидеть данные")
+
+    if (st.button('Посмотреть готовые данные')):
+        st.write("Готовые данные:")
+        st.write(df)
+    sidebar_input_features()
