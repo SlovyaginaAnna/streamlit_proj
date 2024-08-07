@@ -28,7 +28,7 @@ def sidebar_input_features():
 if __name__ == "__main__":
     # Заголовок страницы
     st.title("Загрузка собственного датасета")
-    df = pd.read_csv('train.csv')
+    df = pd.read_csv('streamlit/train.csv')
     # Компонент для загрузки файла
     uploaded_file = st.file_uploader("Выберите файл")
 
